@@ -48,6 +48,16 @@ for event in longpoll.listen():
             User_ID = event.object.from_id
             if m[str(User_ID)]["mute"] == 1:
                 vk.messages.removeChatUser(chat_id=event.chat_id, user_id=User_ID)
+
+        #if event.type == VkBotEventType.MESSAGE_NEW:
+            #response = event.obj.text.lower()
+            #if response.split(' ')[0] == "spam":
+                #vk.messages.send(peer_id=event.obj.peer_id, random_id=0,message=f'[id{218967539}|s] ')
+                #while True:
+                    #vk.messages.send(peer_id=event.obj.peer_id, random_id=0, message=f'[id{218967539}|💚 ] ')
+
+
+
         #Варн
         if event.type == VkBotEventType.MESSAGE_NEW:
             response = event.obj.text.lower()
@@ -57,7 +67,6 @@ for event in longpoll.listen():
                 User_ID = event.object.from_id
                 if m[str(User_ID)]["admin"] == 1:
                     m[str(results[0:9])]["warn"] += 1
-                    #vk.messages.send(peer_id=event.obj.peer_id, random_id=0,message=f'[id{results[0:9]}|Пользователю] выдано предупреждение' + str(m[str(results[0:9])]["warn"]) + "/3")
                     vk.messages.send(peer_id=event.obj.peer_id, random_id=0,
                                      message=f'[id{results[0:9]}|Пользователю] выдано предупреждение [' + str(
                                          m[str(results[0:9])]["warn"]) + "/3]")
